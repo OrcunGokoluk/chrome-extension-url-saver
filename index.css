@@ -14,11 +14,12 @@ body
     font-family: "Kanit", sans-serif;
 }
 input{
-    font-size: large;
-    padding:0.2rem 0.5rem 0.2rem 0.5rem;
+    font-size: small;
+    padding:0.5rem 1rem;
     border: 1px blue solid;
     width: 100%;
     border-radius: 1rem;
+    
 }
 
 button
@@ -41,4 +42,22 @@ button:hover
 button:active
 {
     background-color: rgb(27, 118, 255);
+}
+
+#url-container li
+{
+    list-style: none;
+    background-color: rgb(126, 197, 255);
+    padding: 0.2rem 1rem;
+    margin-top: .5rem;
+    border-radius: .5rem;
+    box-shadow: 0 0 1px rgb(52, 25, 255);
+}
+
+#url-container li a{
+    color: rgb(13, 110, 255);
+}
+
+#url-container li a:hover{
+    color: rgb(157, 0, 255);
 }
