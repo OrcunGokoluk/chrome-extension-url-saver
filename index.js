@@ -1,29 +1,49 @@
 let myLeads=[];
 
 
+
 const inputEl =document.getElementById("input-el");
 const inputBtn = document.getElementById("input-btn"); 
 const urlContainer=document.getElementById("url-container")
 
 
+let listItem = " "
+let listItems=[];
+
+let getItemsInStorage=JSON.parse(localStorage.getItem("myLeads"))
+if(getItemsInStorage!=null)
+{
+    myLeads=JSON.parse(localStorage.getItem("myLeads"))
+    renderLeads();
+}
+
 inputBtn.addEventListener("click", function(){
-    const text=String(inputEl.value);
+    const text=inputEl.value;
     const trimmed=text.trim();
     if(trimmed!=""&&!trimmed.includes(" "))
     {
         myLeads.push(inputEl.value)
-        inputEl.value = ""
+
+        localStorage.setItem("myLeads",JSON.stringify(myLeads));
+
+
         renderLeads()
+        inputEl.value = ""
+        inputEl.focus();
     } 
 })
 
 function renderLeads() {
-    
-    let listItems = ""
-    for (let i = 0; i < myLeads.length; i++) {
-        // Wrap the lead in an anchor tag (<a>) inside the <li>
-        // Can you make the link open in a new tab?
-        listItems += `<li><a href="https://${myLeads[i]}" target="_blank">${myLeads[i]} </a></li>`
+    listItem=" "
+    for(let i in myLeads){
+        listItem += `<li><a href="${myLeads[i]}" target="_blank"> ${myLeads[i]} </a></li>; `;
     }
-    urlContainer.innerHTML = listItems  
+    listItems=listItem.split(";")
+    listItems.reverse();
+    let liItem=listItems.toString();
+    liItem=liItem.replaceAll(',',' ')
+
+    urlContainer.innerHTML=liItem;
+    console.log(liItem)
+
 }

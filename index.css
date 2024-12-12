@@ -14,14 +14,13 @@ body
     font-family: "Kanit", sans-serif;
 }
 input{
+    min-width: 400px;
     font-size: small;
     padding:0.5rem 1rem;
     border: 1px blue solid;
     width: 100%;
     border-radius: 1rem;
-    
 }
-
 button
 {   
     margin-top:0.3rem;
