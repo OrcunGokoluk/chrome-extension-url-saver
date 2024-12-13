@@ -1,20 +1,40 @@
-let myLeads=[];
-
-
+let urlList=[];
+let listItem = " "
+let listItems=[];
 
 const inputEl =document.getElementById("input-el");
 const inputBtn = document.getElementById("input-btn"); 
 const urlContainer=document.getElementById("url-container")
+const deleteBtn=document.getElementById("delete-btn");
+
+const deleteInfo=document.getElementById("delete-info");
+deleteInfo.style.display="none";
+
+deleteBtn.addEventListener("click",function()
+{
+    deleteInfo.style.display="block"
+})
+
+inputEl.addEventListener("focus",function()
+{
+    deleteInfo.style.display="none"
+})
 
 
-let listItem = " "
-let listItems=[];
+deleteBtn.addEventListener("dblclick",function()
+{
+    urlList=[];
+    localStorage.clear();
+    deleteInfo.style.display="none"
+    renderListOfURL();
+})
 
-let getItemsInStorage=JSON.parse(localStorage.getItem("myLeads"))
+
+let getItemsInStorage=JSON.parse(localStorage.getItem("urlList"))
 if(getItemsInStorage!=null)
 {
-    myLeads=JSON.parse(localStorage.getItem("myLeads"))
-    renderLeads();
+    urlList=JSON.parse(localStorage.getItem("urlList"))
+    renderListOfURL();
 }
 
 inputBtn.addEventListener("click", function(){
@@ -22,22 +42,25 @@ inputBtn.addEventListener("click", function(){
     const trimmed=text.trim();
     if(trimmed!=""&&!trimmed.includes(" "))
     {
-        myLeads.push(inputEl.value)
+        urlList.push(inputEl.value)
 
-        localStorage.setItem("myLeads",JSON.stringify(myLeads));
+        localStorage.setItem("urlList",JSON.stringify(urlList));
 
 
-        renderLeads()
+        renderListOfURL()
         inputEl.value = ""
         inputEl.focus();
     } 
 })
 
-function renderLeads() {
-    listItem=" "
-    for(let i in myLeads){
-        listItem += `<li><a href="${myLeads[i]}" target="_blank"> ${myLeads[i]} </a></li>; `;
+function renderListOfURL() {
+
+    listItem=" ";
+    for(let i in urlList){
+
+        listItem += `<li><a href="${urlList[i]}" target="_blank"> ${urlList[i]} </a></li>; `;
     }
+
     listItems=listItem.split(";")
     listItems.reverse();
     let liItem=listItems.toString();

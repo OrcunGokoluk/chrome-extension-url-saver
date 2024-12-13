@@ -20,6 +20,7 @@ input{
     border: 1px blue solid;
     width: 100%;
     border-radius: 1rem;
+    background-color: rgb(221, 239, 255);
 }
 button
 {   
@@ -31,32 +32,45 @@ button
     cursor: pointer;
     border-radius: 1rem;
     font-weight: bolder;
+    border:rgb(48, 131, 255) 2px solid;
 }
-
-button:hover
+button:active
 {
     background-color: rgb(48, 131, 255);
 }
-
-button:active
-{
-    background-color: rgb(27, 118, 255);
+#delete-btn{
+    background-color: rgb(255, 51, 88);
+    border: hotpink 2px solid;
 }
-
+#delete-btn:active{
+    background-color: rgb(255, 62, 123);
+    border: hotpink 2px solid;
+}
 #url-container li
 {
+    max-width: 400px;
     list-style: none;
     background-color: rgb(126, 197, 255);
     padding: 0.2rem 1rem;
     margin-top: .5rem;
     border-radius: .5rem;
     box-shadow: 0 0 1px rgb(52, 25, 255);
+    overflow: hidden;
 }
 
 #url-container li a{
     color: rgb(13, 110, 255);
+    white-space: nowrap;
+
 }
 
 #url-container li a:hover{
     color: rgb(157, 0, 255);
+}
+.delete-info
+{
+    position: absolute;
+    position:absolute;
+    left:8.6rem;
+    font-size: .5rem;
 }
