@@ -6,9 +6,19 @@ const inputEl =document.getElementById("input-el");
 const inputBtn = document.getElementById("input-btn"); 
 const urlContainer=document.getElementById("url-container")
 const deleteBtn=document.getElementById("delete-btn");
+const currentBtn=document.getElementById("current-btn");
 
 const deleteInfo=document.getElementById("delete-info");
 deleteInfo.style.display="none";
+
+currentBtn.addEventListener("click", function()
+{
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        urlList.push(tabs[0].url);
+        localStorage.setItem("urlList", JSON.stringify(urlList) );
+        renderListOfURL(urlList)
+    })
+})
 
 deleteBtn.addEventListener("click",function()
 {
@@ -26,7 +36,7 @@ deleteBtn.addEventListener("dblclick",function()
     urlList=[];
     localStorage.clear();
     deleteInfo.style.display="none"
-    renderListOfURL();
+    renderListOfURL(urlList);
 })
 
 
@@ -34,7 +44,7 @@ let getItemsInStorage=JSON.parse(localStorage.getItem("urlList"))
 if(getItemsInStorage!=null)
 {
     urlList=JSON.parse(localStorage.getItem("urlList"))
-    renderListOfURL();
+    renderListOfURL(urlList);
 }
 
 inputBtn.addEventListener("click", function(){
@@ -47,18 +57,18 @@ inputBtn.addEventListener("click", function(){
         localStorage.setItem("urlList",JSON.stringify(urlList));
 
 
-        renderListOfURL()
+        renderListOfURL(urlList)
         inputEl.value = ""
         inputEl.focus();
     } 
 })
 
-function renderListOfURL() {
+function renderListOfURL(listOfUrl) {
 
     listItem=" ";
-    for(let i in urlList){
+    for(let i=0;i<listOfUrl.length;i++){
 
-        listItem += `<li><a href="${urlList[i]}" target="_blank"> ${urlList[i]} </a></li>; `;
+        listItem += `<li><i class="fa-regular fa-circle"></i><a href="${listOfUrl[i]}" target="_blank"> ${listOfUrl[i]} </a></li>; `;
     }
 
     listItems=listItem.split(";")

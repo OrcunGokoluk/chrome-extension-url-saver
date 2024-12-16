@@ -14,11 +14,11 @@ body
     font-family: "Kanit", sans-serif;
 }
 input{
-    min-width: 400px;
+    display: block;
+    width: 400px;
     font-size: small;
     padding:0.5rem 1rem;
     border: 1px blue solid;
-    width: 100%;
     border-radius: 1rem;
     background-color: rgb(221, 239, 255);
 }
@@ -33,6 +33,7 @@ button
     border-radius: 1rem;
     font-weight: bolder;
     border:rgb(48, 131, 255) 2px solid;
+    width: 12.3rem;
 }
 button:active
 {
@@ -41,6 +42,7 @@ button:active
 #delete-btn{
     background-color: rgb(255, 51, 88);
     border: hotpink 2px solid;
+    width: 12.3rem;
 }
 #delete-btn:active{
     background-color: rgb(255, 62, 123);
@@ -48,14 +50,23 @@ button:active
 }
 #url-container li
 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     max-width: 400px;
     list-style: none;
     background-color: rgb(126, 197, 255);
-    padding: 0.2rem 1rem;
+    padding: 0.2rem 0.5rem;
     margin-top: .5rem;
     border-radius: .5rem;
     box-shadow: 0 0 1px rgb(52, 25, 255);
     overflow: hidden;
+}
+#url-container li i
+{
+    font-size: 10px;
+    margin-right: 0.5rem;
+    cursor: pointer;
 }
 
 #url-container li a{
@@ -68,9 +79,19 @@ button:active
     color: rgb(157, 0, 255);
 }
 .delete-info
-{
+{   display: block;
     position: absolute;
-    position:absolute;
-    left:8.6rem;
+    left: 3.9rem;
+    right: auto;
     font-size: .5rem;
+}
+#current-btn
+{
+    width: 400px;
+}
+.delete-rel
+{   
+    display: inline-block;
+    position: relative;
+    width: 49.6%;
 }
